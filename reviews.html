@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews | YARA MAGIC</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Poppins,sans-serif;
+background:#F8F4EE;
+padding:40px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:white;
+padding:35px;
+border-radius:25px;
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+h1{
+text-align:center;
+font-family:"Cormorant Garamond",serif;
+font-size:42px;
+color:#4A2F28;
+margin-bottom:10px;
+}
+
+p{
+text-align:center;
+color:#777;
+margin-bottom:30px;
+}
+
+input,textarea,select{
+
+width:100%;
+padding:15px;
+border-radius:12px;
+border:1px solid #ddd;
+margin-bottom:18px;
+font-family:Poppins;
+
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+button{
+
+width:100%;
+padding:15px;
+border:none;
+border-radius:50px;
+background:#4A2F28;
+color:white;
+font-size:16px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#7a5247;
+
+}
+
+.review{
+
+background:#faf7f2;
+padding:18px;
+border-radius:18px;
+margin-top:18px;
+
+}
+
+.review h3{
+
+color:#4A2F28;
+margin-bottom:6px;
+
+}
+
+.review small{
+
+color:#9b7753;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Leave a Review</h1>
+
+<p>Your opinion means a lot to us 🤎</p>
+
+<input id="name" placeholder="Your Name (optional)">
+
+<select id="stars">
+<option value="5">⭐⭐⭐⭐⭐</option>
+<option value="4">⭐⭐⭐⭐</option>
+<option value="3">⭐⭐⭐</option>
+<option value="2">⭐⭐</option>
+<option value="1">⭐</option>
+</select>
+
+<textarea id="review" placeholder="Write your review..."></textarea>
+
+<button onclick="sendReview()">Submit Review</button>
+
+<div id="reviews"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const supabase = window.supabase.createClient(
+
+"https://odwxhmebeuxuzsovocbw.supabase.co",
+
+"sb_publishable_JTu_elPRymnrHh7zkyWiHA_h-6ccZ4c"
+
+);
+
+async function loadReviews(){
+
+const {data,error}=await supabase
+
+.from("reviews")
+
+.select("*")
+
+.order("created_at",{ascending:false});
+
+const container=document.getElementById("reviews");
+
+container.innerHTML="";
+
+data.forEach(r=>{
+
+container.innerHTML+=`
+
+<div class="review">
+
+<h3>${r.name || "Anonymous"}</h3>
+
+<small>${"⭐".repeat(r.stars)}</small>
+
+<p>${r.review}</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+async function sendReview(){
+
+const name=document.getElementById("name").value;
+
+const review=document.getElementById("review").value;
+
+const stars=document.getElementById("stars").value;
+
+await supabase.from("reviews").insert([{
+
+name,
+
+review,
+
+stars
+
+}]);
+
+document.getElementById("name").value="";
+
+document.getElementById("review").value="";
+
+loadReviews();
+
+}
+
+loadReviews();
+
+</script>
+
+</body>
+</html>

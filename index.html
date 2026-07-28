@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YARA MAGIC</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:#F8F4EE;
+font-family:Poppins,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+overflow-y: auto;
+
+}
+
+/* نجوم بالخلفية */
+
+body::before{
+
+content:"";
+position:absolute;
+inset:0;
+background-image:
+radial-gradient(#c5a26d 1px, transparent 1px),
+radial-gradient(#d9b98a 1px, transparent 1px);
+
+background-size:90px 90px;
+background-position:0 0,45px 45px;
+opacity:.18;
+
+}
+
+.card{
+
+width:370px;
+background:white;
+border-radius:30px;
+padding:40px 30px;
+text-align:center;
+box-shadow:0 20px 45px rgba(0,0,0,.08);
+position:relative;
+animation:fade 1.2s;
+
+}
+
+.logo{
+
+width:150px;
+margin-bottom:18px;
+
+}
+
+h1{
+
+font-family:"Cormorant Garamond",serif;
+font-size:42px;
+color:#4A2F28;
+letter-spacing:2px;
+
+}
+
+.subtitle{
+
+margin-top:8px;
+font-size:14px;
+color:#777;
+
+}
+
+.magic{
+
+margin:18px 0 30px;
+font-style:italic;
+color:#9b7753;
+
+}
+
+a.button{
+
+display:block;
+text-decoration:none;
+background:#4A2F28;
+color:white;
+padding:16px;
+margin:14px 0;
+border-radius:50px;
+font-size:15px;
+transition:.3s;
+
+}
+
+a.button:hover{
+
+background:#7a5247;
+transform:translateY(-3px);
+
+}
+
+.footer{
+
+margin-top:28px;
+font-size:13px;
+color:#777;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(25px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<img src="llooggoo.png" class="logo">
+
+<h1>YARA MAGIC</h1>
+
+<p class="subtitle">
+Luxury Handmade Chocolates
+</p>
+
+<p class="magic">
+Made with Magic ✨
+</p>
+
+<a class="button" href="reviews.html">
+⭐ Leave a Review
+</a>
+
+<a class="button" href="https://www.instagram.com/magiccl0?igsh=MXA2aGFxMmMybnYyNw%3D%3D&utm_source=qr">
+Instagram
+</a>
+
+<a class="button" href="https://www.tiktok.com/@magiccl0?_r=1&_t=ZS-98OW0yonA3R">
+TikTok
+</a>
+
+<div class="footer">
+
+Thank you for choosing us 🤎
+
+</div>
+
+</div>
+
+</body>
+</html>
