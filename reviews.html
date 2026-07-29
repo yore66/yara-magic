@@ -134,7 +134,8 @@ color:#9b7753;
 
 <script>
 
-const supabase = window.supabase.createClient(
+
+const client = window.supabase.createClient(
 
 "https://odwxhmebeuxuzsovocbw.supabase.co",
 
@@ -144,13 +145,14 @@ const supabase = window.supabase.createClient(
 
 async function loadReviews(){
 
-const {data,error}=await supabase
-
-.from("reviews")
+const {data,error}=await client.from("reviews")
 
 .select("*")
 
 .order("created_at",{ascending:false});
+
+console.log(data);
+console.log(error);
 
 const container=document.getElementById("reviews");
 
@@ -184,15 +186,15 @@ const review=document.getElementById("review").value;
 
 const stars=document.getElementById("stars").value;
 
-await supabase.from("reviews").insert([{
+const { data, error } = await client.from("reviews")
+  .insert([{
+    name,
+    review,
+    stars
+  }]);
 
-name,
-
-review,
-
-stars
-
-}]);
+console.log(data);
+console.log(error);
 
 document.getElementById("name").value="";
 
